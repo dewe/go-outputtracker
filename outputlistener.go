@@ -6,6 +6,10 @@ type OutputListener[T any] struct {
 	listeners []*OutputTracker[T]
 }
 
+func CreateListener[T any]() *OutputListener[T] {
+	return &OutputListener[T]{listeners: make([]*OutputTracker[T], 0)}
+}
+
 func (ol *OutputListener[T]) CreateTracker() *OutputTracker[T] {
 	tracker := &OutputTracker[T]{outputListener: ol}
 	ol.listeners = append(ol.listeners, tracker)
